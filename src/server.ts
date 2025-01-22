@@ -5,6 +5,8 @@ import bodyParser from "body-parser";
 import express from "express";
 import mongoose from "mongoose";
 
+import postsRoute from './routes/posts.route'
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -16,6 +18,7 @@ app.use((req, res, next) => {
 
   next();
 });
+app.use("/posts", postsRoute);
 
 const db = mongoose.connection;
 
