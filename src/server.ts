@@ -2,7 +2,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import bodyParser from "body-parser";
-import express, { Express } from "express";
+import express from "express";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -16,7 +17,18 @@ app.use((req, res, next) => {
   next();
 });
 
+const db = mongoose.connection;
+
+db.on("error", (error) => console.error(error));
+db.once("open", () => console.log("Connected to database"));
+
 const initApp = async () => {
+  if (!process.env.MONGO_URI) {
+    throw new Error("MONGO_URI is not defined in .env file");
+  }
+
+  await mongoose.connect(process.env.MONGO_URI);
+
   return app;
 };
 
