@@ -17,7 +17,6 @@ class CommentsController extends BaseController<IComment> {
       res.status(400).send(error);
     }
   }
-
 }
 
 export default new CommentsController();
