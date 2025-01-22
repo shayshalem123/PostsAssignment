@@ -10,4 +10,6 @@ router.post("/", postsController.create.bind(postsController));
 
 router.get("/:id", postsController.getById.bind(postsController));
 
+router.get("/post", postsController.getAllPostsBySender.bind(postsController));
+
 export default router;
