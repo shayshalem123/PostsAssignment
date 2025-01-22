@@ -14,6 +14,8 @@ router.get("/", (req, res) => {
 
 router.post("/", postsController.create.bind(postsController));
 
+router.put("/:id", postsController.update.bind(postsController));
+
 router.get("/post", postsController.getAllPostsBySender.bind(postsController));
 
 router.get("/:id", postsController.getById.bind(postsController));
